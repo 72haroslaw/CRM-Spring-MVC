@@ -1,8 +1,9 @@
 # A simple CRM system (Spring Framework, web MVC, JDBC, MySQL)
 
 Run:
-- JDK 1.8
+- JDK 1.8+
 - Maven
+- Tomcat v9.0 Server
 - MySQL 5.7
 
 Development:
