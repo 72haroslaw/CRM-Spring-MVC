@@ -44,8 +44,8 @@
                     <td>${student.email}</td>
                     <td>${student.telephone}</td>
                  	<td>${student.comment}</td>
-                    <td><a href="updateStudent?id=${student.id}">Edit</a>
-                        <a href="deleteStudent?id=${student.id}">Delete</a></td>              
+                    <td><a href="updateStudent/${student.id}">Edit</a>
+                        <a href="deleteStudent/${student.id}">Delete</a></td>              
                 </tr>
                 </c:forEach>             
             </table>

@@ -2,11 +2,10 @@ package com.rafalzdzieborski.spring.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,22 +19,22 @@ public class StudentController {
 	@Autowired
 	private StudentDAOImpl studentDAOImpl;
 	
-	@RequestMapping(value= {"/service"}, method = RequestMethod.GET)
+	@RequestMapping(value= "/service", method = RequestMethod.GET)
     public ModelAndView home() {
-		ModelAndView model = new ModelAndView();
-		model.setViewName("service");
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("service");
 		List<Student> studentList = studentDAOImpl.getAllStudents();
-		model.addObject("studentList", studentList);
-		return model;
+		modelAndView.addObject("studentList", studentList);
+		return modelAndView;
 	}
 	
-	@RequestMapping(value= {"/newStudent"}, method = RequestMethod.GET)
+	@RequestMapping(value= "/newStudent", method = RequestMethod.GET)
     public ModelAndView newStudent() {
-		ModelAndView model = new ModelAndView();
+		ModelAndView modelAndView = new ModelAndView();
 		Student student = new Student();
-		model.addObject("student", student);
-		model.setViewName("formStudent");
-		return model;
+		modelAndView.addObject("student", student);
+		modelAndView.setViewName("formStudent");
+		return modelAndView;
 	}
 	
 	@RequestMapping(value = "/saveStudent", method = RequestMethod.POST)
@@ -48,19 +47,17 @@ public class StudentController {
         return new ModelAndView("redirect:/service");
     }
 	
-	@RequestMapping(value = "/updateStudent", method = RequestMethod.GET)
-    public ModelAndView editStudent(HttpServletRequest request) {
-		ModelAndView model = new ModelAndView();
-		Student student = studentDAOImpl.getStudent(Integer.parseInt(request.getParameter("id")));
-		model.addObject("student", student);
-		model.setViewName("formStudent");
-        return model;
+	@RequestMapping(value = "/updateStudent/{id}", method = RequestMethod.GET)
+    public ModelAndView editStudent(@PathVariable("id") int id) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("student", studentDAOImpl.getStudent(id));
+		modelAndView.setViewName("formStudent");
+        return modelAndView;
     }
 	
-	@RequestMapping(value = "/deleteStudent", method = RequestMethod.GET)
-    public ModelAndView deleteEmployee(HttpServletRequest request) {
-        Student student = studentDAOImpl.getStudent(Integer.parseInt(request.getParameter("id")));
-        studentDAOImpl.delete(student);
+	@RequestMapping(value = "/deleteStudent/{id}", method = RequestMethod.GET)
+    public ModelAndView deleteEmployee(@PathVariable("id") int id) {
+        studentDAOImpl.delete(studentDAOImpl.getStudent(id));
         return new ModelAndView("redirect:/service");
     }
 	

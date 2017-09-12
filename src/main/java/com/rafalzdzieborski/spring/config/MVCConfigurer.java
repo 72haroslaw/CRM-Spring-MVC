@@ -14,11 +14,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
-import com.rafalzdzieborski.spring.security.LoginSecurityConfig;
+import com.rafalzdzieborski.spring.login.security.LoginSecurityConfig;
 
 @Configuration
 @ComponentScan(basePackages = "com.rafalzdzieborski.spring")
-@Import(value = { LoginSecurityConfig.class })
+@Import(value = LoginSecurityConfig.class)
 @EnableWebMvc
 public class MVCConfigurer extends WebMvcConfigurerAdapter {
 	

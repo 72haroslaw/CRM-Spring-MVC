@@ -10,31 +10,31 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class LoginController {
 	
-	@RequestMapping(value = { "/"}, method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView welcomePage() throws IOException {
-		ModelAndView model = new ModelAndView();
-		model.setViewName("welcomePage");
-		return model;
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("welcomePage");
+		return modelAndView;
 	}
 
-	@RequestMapping(value = { "/homePage"}, method = RequestMethod.GET)
+	@RequestMapping(value = "/homePage", method = RequestMethod.GET)
 	public ModelAndView homePage() {
-		ModelAndView model = new ModelAndView();
-		model.setViewName("homePage");
-		return model;
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("homePage");
+		return modelAndView;
 	}
 	
 	@RequestMapping(value = "/loginPage", method = RequestMethod.GET)
 	public ModelAndView loginPage(@RequestParam(value = "error",required = false) String error,
 	@RequestParam(value = "logout",	required = false) String logout) {
-		ModelAndView model = new ModelAndView();
+		ModelAndView modelAndView = new ModelAndView();
 		if (error != null) {
-			model.addObject("error", "Invalid username or password.");
+			modelAndView.addObject("error", "Invalid username or password.");
 		}
 		if (logout != null) {
-			model.addObject("message", "Logged out successfully.");
+			modelAndView.addObject("message", "Logged out successfully.");
 		}
-		model.setViewName("loginPage");
-		return model;
+		modelAndView.setViewName("loginPage");
+		return modelAndView;
 	}	
 }
