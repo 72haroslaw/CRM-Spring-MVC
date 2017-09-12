@@ -1,4 +1,4 @@
-package com.rafalzdzieborski.security;
+package com.rafalzdzieborski.spring.security;
 
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 

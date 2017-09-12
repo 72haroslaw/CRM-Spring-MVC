@@ -13,14 +13,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.rafalzdzieborski.spring.dao.StudentDAOImpl;
 import com.rafalzdzieborski.spring.model.Student;
-import com.rafalzdzieborski.spring.model.StudentService;
 
 @Controller
-public class ServiceController {
-	
-	@Autowired
-	private StudentService studentService;
-	
+public class StudentController {
+
 	@Autowired
 	private StudentDAOImpl studentDAOImpl;
 	
@@ -28,7 +24,7 @@ public class ServiceController {
     public ModelAndView home() {
 		ModelAndView model = new ModelAndView();
 		model.setViewName("service");
-		List<Student> studentList = studentService.getStudentList();
+		List<Student> studentList = studentDAOImpl.getAllStudents();
 		model.addObject("studentList", studentList);
 		return model;
 	}
